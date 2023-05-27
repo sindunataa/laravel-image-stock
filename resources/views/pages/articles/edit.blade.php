@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @section('title')
-    {{ 'Edit articles' }}
+    {{ 'Edit Articles' }}
 @endsection
 
 @section('main')
@@ -13,7 +13,7 @@
                     <!--Page header-->
                     <div class="page-header">
                         <div class="page-leftheader">
-                            <h4 class="page-title">Edit Contingent</h4>
+                            <h4 class="page-title">Edit Articles</h4>
                         </div>
                         <div class="page-rightheader ml-auto d-lg-flex d-none">
                             <ol class="breadcrumb">
@@ -25,8 +25,8 @@
                                                 d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z" />
                                             <path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3" />
                                         </svg><span class="breadcrumb-icon"> Home</span></a></li>
-                                <li class="breadcrumb-item"><a href="/contingents">List Contingent</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Contingent</li>
+                                <li class="breadcrumb-item"><a href="/contingents">List Articles</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Articles</li>
                             </ol>
                         </div>
                     </div>
@@ -38,57 +38,50 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Contingent</h4>
+                                    <h4 class="card-title">Edit Articles</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('articles.update', ['id' => $article->id]) }}" method="POST"
+                                    <form action="{{ route('articles.update', ['id' => $edit->id]) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="">
                                             <div class="form-group">
-                                                <label for="title" class="form-label">title :</label>
-                                                <input type="text" name="title" value="{{ $article->title }}"
+                                                <label for="title" class="form-label">Title :</label>
+                                                <input type="text" name="title" value="{{ $edit->title }}"
                                                     class="form-control" id="title" placeholder="title">
                                             </div>
-                                            {{-- <div class="form-group">
-                                        <label for="slug" class="form-label">slug :</label>
-                                        <input type="text" name="slug" class="form-control" value="{{ $edit->slug }}" id="slug" placeholder="slug">
-                                    </div> --}}
                                             <div class="form-group">
-                                                <label for="status" class="form-label">status :</label>
-                                                <input type="text" name="status" class="form-control" id="status"
-                                                    value="{{ $article->status }}" placeholder="status">
+                                                <label for="status" class="form-label">Status :</label>
+                                                <select type="text" name="status" id="status" class="form-control">
+                                                    <option label="Pilih Salah Satu"></option>
+                                                    <option value="pending" {{($edit->status == 'pending') ? "selected":"";}}>pending</option>
+                                                    <option value="publish" {{($edit->status == 'publish') ? "selected":"";}}>publish</option>
+                                                
+                                                </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="content" class="form-label">content :</label>
+                                                <label for="content" class="form-label">Content :</label>
                                                 <input type="text" name="content" class="form-control" id="content"
-                                                    value="{{ $article->content }}" placeholder="content">
+                                                    value="{{ $edit->content }}" placeholder="content">
                                             </div>
                                             <div class="form-group">
-                                                <label for="image" class="form-label">Kota :</label>
-                                                <input type="file"
-                                                    data-default-file="{{ asset('uploads/' . $article->image) }}"
-                                                    name="image" class="dropify" data-height="300" />
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="inputText" class="col-sm-2 col-form-label">Authors_Id</label>
-                                                <div class="col-sm-10">
-                                                    <select type="text" name="authors_id" class="form-control"
-                                                        placeholder="authors_id">
-                                                        @foreach ($articles as $articles)
-                                                            <option value="{{ $articles->id }}"
-                                                                {{ $articles->id == $article->authors_id ? 'selected' : '' }}>
-                                                                {{ $articles->title }}</option>
+                                                <label for="author_id" class="form-label">Authors_Id :</label>
+                                                    <select type="text" name="author_id" class="form-control"
+                                                        placeholder="author_id" id="author_id">
+                                                        @foreach ($author as $authors)
+                                                            <option value="{{ $authors->id }}"
+                                                                {{ $edit->id == $edit->author_id ? 'selected' : '' }}>
+                                                                {{ $authors->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="published_at" class="form-label">published_at :</label>
-                                                <input type="date" name="published_at" class="form-control"
-                                                    id="published_at" value="{{ $article->published_at }}"
-                                                    placeholder="published_at">
+                                                <label for="image" class="form-label">Image :</label>
+                                                <input type="file"
+                                                    data-default-file="{{ asset('uploads/' . $edit->image) }}"
+                                                    name="image" class="dropify" data-height="300" />
                                             </div>
+                                            
 
                                         </div>
                                         <button type="submit" class="btn btn-primary mt-2 mb-0">Submit</button>

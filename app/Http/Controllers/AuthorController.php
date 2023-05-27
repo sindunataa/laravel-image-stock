@@ -84,7 +84,6 @@ class AuthorController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8192',
             'address' => 'required',
 
         ]);

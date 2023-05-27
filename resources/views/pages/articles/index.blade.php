@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @section('title')
-    {{ 'List Contingent' }}
+    {{ 'Articles' }}
 @endsection
 @section('head')
     <!-- Data table css -->
@@ -34,7 +34,7 @@
                     <!--Page header-->
                     <div class="page-header">
                         <div class="page-leftheader">
-                            <h4 class="page-title">List news</h4>
+                            <h4 class="page-title">List Articles</h4>
                         </div>
                         <div class="page-rightheader ml-auto d-lg-flex d-none">
                             <ol class="breadcrumb">
@@ -46,7 +46,7 @@
                                                 d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z" />
                                             <path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3" />
                                         </svg><span class="breadcrumb-icon"> Home</span></a></li>
-                                <li class="breadcrumb-item"><a href="/articles">List news</a></li>
+                                <li class="breadcrumb-item"><a href="/articles">List Articles</a></li>
                             </ol>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 <div class="card-header">
                                     <div class="col mb-4 mt-4">
                                         <a href="{{ route('articles.create') }}" class="btn btn-primary"><i
-                                                class="fe fe-plus"></i> Add News</a>
+                                                class="fe fe-plus"></i> Add Articles</a>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -69,27 +69,27 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped text-nowrap mb-0" id="example1">
                                             <thead>
-                                                <tr>
+                                                <tr class="text-center">
                                                     <th>No</th>
                                                     <th>Title</th>
                                                     <th>Status</th>
                                                     <th>Content</th>
                                                     <th>Image</th>
                                                     <th>Published At</th>
-                                                    <th class="text-right">Action</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($articles as $article)
-                                                    <tr>
+                                                    <tr class="text-center">
                                                         <td>{{ ++$i }}</td>
                                                         <td>{{ $article->title }}</td>
                                                         <td>{{ $article->status }}</td>
                                                         <td>{{ $article->content }}</td>
                                                         <td> <img src="{{ asset('uploads/' . $article->image) }}"
-                                                                alt=""> </td>
+                                                                alt="" width="100"> </td>
                                                         <td>{{ $article->author->name }}</td>
-                                                        <td class="text-right">
+                                                        <td>
                                                             <form action="{{ route('articles.destroy', $article->id) }}"
                                                                 method="POST">
 

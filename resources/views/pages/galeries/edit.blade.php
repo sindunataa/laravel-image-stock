@@ -14,7 +14,7 @@
                     <!--Page header-->
                     <div class="page-header">
                         <div class="page-leftheader">
-                            <h4 class="page-title">Edit Cabor</h4>
+                            <h4 class="page-title">Edit Galeries</h4>
                         </div>
                         <div class="page-rightheader ml-auto d-lg-flex d-none">
                             <ol class="breadcrumb">
@@ -26,8 +26,8 @@
                                                 d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z" />
                                             <path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3" />
                                         </svg><span class="breadcrumb-icon"> Home</span></a></li>
-                                <li class="breadcrumb-item"><a href="/contingents">List Cabor</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Cabor</li>
+                                <li class="breadcrumb-item"><a href="/galeries">List Galeries</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Galeries</li>
                             </ol>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Cabor</h4>
+                                    <h4 class="card-title">Edit Galeries</h4>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('galeries.update', ['id' => $edit->id]) }}" method="POST"
@@ -55,11 +55,8 @@
                                                 <label for="status" class="form-label">Status :</label>
                                                 <select type="text" name="status" id="status" class="form-control">
                                                     <option label="Pilih Salah Satu"></option>
-                                                    <option value="pending"
-                                                        {{ $edit->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                                    <option value="publish"
-                                                        {{ $edit->status == 'publish' ? 'selected' : '' }}>Publish</option>
-
+                                                    <option value="pending" {{($edit->status == 'Pending') ? "selected":"";}}>Pending</option>
+                                                    <option value="publish" {{($edit->status == 'Publish') ? "selected":"";}}>Publish</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -71,10 +68,10 @@
                                                 <select type="text" name="album_id" class="form-control"
                                                     placeholder="album_id" id="album_id">
                                                     <option label="Pilih Salah Satu"></option>
-                                                    @foreach ($author as $authors)
-                                                        <option value="{{ $authors->id }}"
-                                                            {{ $authors->id == $edit->author_id ? 'selected' : '' }}>
-                                                            {{ $authors->title }}</option>
+                                                    @foreach ($album as $albums)
+                                                        <option value="{{ $albums->id }}"
+                                                            {{ $albums->id == $edit->album_id ? 'selected' : '' }}>
+                                                            {{ $albums->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

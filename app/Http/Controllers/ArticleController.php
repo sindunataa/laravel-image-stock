@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File as FacadesFile;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -14,7 +17,7 @@ class ArticleController extends Controller
     public function index()
     {   
         $authors =Author::all();
-        $articles = Article::where('author')->latest()->get();
+        $articles = Article::with('author')->latest()->get();
 
         return view('pages.articles.index', compact('articles','authors'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -71,18 +74,19 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(Article $article, $id)
     {
-        $articles = Article::with('author')->get();
         $author = Author::get();
-        $edit = Article::where('articles', $article)->first();
-        return view('pages.articles.edit', compact('articles','author','edit'));
+        $article = Article::with('author')->get();
+        $edit = Article::where('id', $id)->first();
+        
+        return view('pages.articles.edit', compact('article','author','edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Article $article, $id)
     {
         $request->validate([
             'title' => 'required',
@@ -101,7 +105,7 @@ class ArticleController extends Controller
         ];
 
         if($request->has('image')){
-            $image = Storage::disk('uploads')->put('articles', $request-image);
+            $image = Storage::disk('uploads')->put('articles', $request->image);
             $data_articles['image']= $image;
             
             if ($article->image){
@@ -118,9 +122,9 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        $article = Galery::where('id', $id)->firstOrFail();
+        $article = Article::where('id', $id)->firstOrFail();
         FacadesFile::delete('./uploads/' . $article
         ->image);
         $article->DELETE();

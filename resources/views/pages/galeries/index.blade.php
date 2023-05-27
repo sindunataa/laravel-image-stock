@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @section('title')
-    {{'List Galeries'}}
+    {{'Galeries'}}
 @endsection
 @section('head')
     <!-- Data table css -->
@@ -52,6 +52,7 @@
                     
                     <div class="card">
                         <div class="card-header">
+            
                             <div class="col mb-4 mt-4">
                                 <a href="{{ route('galeries.create')}}" class="btn btn-primary"><i class="fe fe-plus"></i> Add New Galeries</a>
                             </div>
@@ -62,7 +63,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped text-nowrap mb-0" id="example1">
                                     <thead >
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Title</th>
                                             <th>Status</th>
@@ -70,22 +71,22 @@
                                             <th>Description</th>
                                             <th>Category</th>
                                             <th>Author</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($galeries as $galery)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $galery->title }}</td>
                                             <td>{{ $galery->status }}</td>
                                             {{-- <td>{!! $cabors->description !!}</td> --}}
-                                            <td> <img src="{{ asset('uploads/'.$galery->image) }}" width="75" alt=""></td>
+                                            <td> <img src="{{ asset('uploads/'.$galery->image) }}" width="250" alt=""></td>
                                             <td>{{ $galery->description }}</td>
                                             <td>{{ $galery->album->title }}</td>
                                             <td>{{ $galery->author->name }}</td>
                                             
-                                            <td class="text-right">
+                                            <td>
                                                 <form action="{{ route('galeries.destroy',$galery->id) }}" method="POST">
     
                                                     <a class="btn btn-sm btn-success" href="{{ route('galeries.edit',$galery->id) }}">Edit</a>

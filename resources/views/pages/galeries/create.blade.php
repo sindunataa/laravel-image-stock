@@ -17,13 +17,13 @@
             <!--Page header-->
             <div class="page-header">
                 <div class="page-leftheader">
-                    <h4 class="page-title">Add Cabor</h4>
+                    <h4 class="page-title">Add Galeries</h4>
                 </div>
                 <div class="page-rightheader ml-auto d-lg-flex d-none">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#" class="d-flex"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z"/><path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3"/></svg><span class="breadcrumb-icon"> Home</span></a></li>
-                        <li class="breadcrumb-item"><a href="/contingents">List Cabor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Cabor</li>
+                        <li class="breadcrumb-item"><a href="/contingents">List Galeries</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add Galeries</li>
                     </ol>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="author_id" class="form-label">Cabor :</label>
+                                        <label for="author_id" class="form-label">authors :</label>
                                         <select type="text" name="author_id" class="form-control" placeholder="author_id" id="author_id">
                                             <option label="Pilih Salah Satu"></option>
                                             @foreach ($authors as $author)

@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @section('title')
-    {{'List Albums'}}
+    {{'Albums'}}
 @endsection
 @section('head')
     <!-- Data table css -->
@@ -59,24 +59,24 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped text-nowrap mb-0" id="example1">
                                     <thead >
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Title</th>
                                             <th>Status</th>
                                             <th>Deskripsi</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($albums as $album)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $album->title }}</td>
                                             <td>{{ $album->status }}</td>
                                             <td>{{ $album->description }}</td>
                                         
     
-                                            <td class="text-right">
+                                            <td>
                                                 <form action="{{ route('albums.destroy',$album->id) }}" method="POST">
                                     
                                                     <a class="btn btn-sm btn-success" href="{{ route('albums.edit',$album->id) }}">Edit</a>

@@ -80,12 +80,11 @@ class GaleryController extends Controller
      */
     public function edit($id)
     {
-        $album = Album::get();
-        $author = Author::get();
-        $galery = Galery::with('album','author')->get();
+        $album = Album::all();
+        $author = Author::all();
         $edit = Galery::where('id', $id)->first();
 
-        return view('pages.galeries.edit', compact('album','author','galery', 'edit'));
+        return view('pages.galeries.edit', compact('album','author', 'edit'));
     }
 
     /**
