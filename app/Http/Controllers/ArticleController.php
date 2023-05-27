@@ -55,7 +55,7 @@ class ArticleController extends Controller
         ];
 
         if ($request->has('image')){
-            $image = Storage::disk('uploads')->put('authors', $request->image);
+            $image = Storage::disk('uploads')->put('articles', $request->image);
             $data_articles['image'] = $image;
         }
         Article::create($data_articles);
