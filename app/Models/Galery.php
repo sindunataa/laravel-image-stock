@@ -27,5 +27,5 @@ class Galery extends Model
     {
         return $this->belongsTo(Author::class);
     }
-    
+
 }

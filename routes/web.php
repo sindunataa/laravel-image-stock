@@ -7,9 +7,11 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\GaleriesController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -67,3 +69,18 @@ Route::prefix('articles/')->name('articles.')->group(function () {
     Route::post('/update/{id}', [ArticleController::class, 'update'])->name('update');
     Route::delete('/articles/destroy/{article}', [ArticleController::class, 'destroy'])->name('destroy');
 });
+
+Route::prefix('users/')->name('users.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
+    Route::post('/update/{id}', [UserController::class, 'update'])->name('update');
+    Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('destroy');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

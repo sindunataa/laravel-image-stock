@@ -35,7 +35,6 @@ class AlbumController extends Controller
             'title' => 'required',
             'status' => 'required',
             'description' => 'required',
-        
         ]);
 
         $input = $request->all();
