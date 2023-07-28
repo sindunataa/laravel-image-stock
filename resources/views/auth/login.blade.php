@@ -119,6 +119,7 @@
 														</div>
 													</div>
                                                 </form>
+												<a href="{{ route('register') }}" class="btn btn-success btn-block mt-2"><i class="fe fe-arrow-right"></i>Register</a>
 											</div>
 										</div>
 									</div>
