@@ -75,7 +75,7 @@
                                                     <th>Status</th>
                                                     <th>Content</th>
                                                     <th>Image</th>
-                                                    <th>Published At</th>
+                                                    {{-- <th>Published At</th> --}}
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -88,7 +88,7 @@
                                                         <td>{{ $article->content }}</td>
                                                         <td> <img src="{{ asset('uploads/' . $article->image) }}"
                                                                 alt="" width="100"> </td>
-                                                        <td>{{ $article->author->name }}</td>
+                                                        {{-- <td>{{ $article->author->name }}</td> --}}
                                                         <td>
                                                             <form action="{{ route('articles.destroy', $article->id) }}"
                                                                 method="POST">

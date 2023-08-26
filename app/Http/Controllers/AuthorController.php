@@ -97,7 +97,7 @@ class AuthorController extends Controller
 
         if ($request->has('image')) {
             $image = Storage::disk('uploads')->put('authors', $request->image);
-            $data_galeries['image'] = $image;
+            $data_authors['image'] = $image;
             // dd($object['avatar']);
             if ($authors->image) {
                 FacadesFile::delete('./uploads/' . $authors->image);
